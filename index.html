@@ -80,23 +80,38 @@
 
     <script>
         let count = 0;
+        let vibrate = 0;
+
+
         function btn() {
+            if (vibrate == 1) {
+            navigator.vibrate(75);
+        }
             count++;
-            navigator.vibrate(75)
+
             let a = document.getElementById('counting')
-        a.innerHTML = count;
+            a.innerHTML = count;
         }
         function btnrst() {
             let c = confirm("Are You Sure You Want to Reset?")
-            if(c==true){
+            if (c == true) {
                 count = 0;
-            let a = document.getElementById('counting')
-        a.innerHTML = count;
+                let a = document.getElementById('counting')
+                a.innerHTML = count;
             }
-        
+        }
+
+        function vibr() {
+            
+            if(vibrate != 1){
+                vibrate = 1;
+            }else{
+                vibrate = 0;
+            }
+
         }
         
-        
+
     </script>
 </body>
 </html>
