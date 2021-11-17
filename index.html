@@ -67,20 +67,21 @@
 </head>
 <body>
     
-  <div class="tasheeh">
-     
+   <div class="tasheeh">
+
         <img id="texture" src="tasbeeh.jpg" alt="texture">
         <img id="bodyc" src="body_10.png" alt="">
         <img onclick="btn()" id="count" src="count.png" alt="">
-        <img  onclick="btnrst()" id="reset" src="reset.png" alt="">
-        <img id="vibrate" src="reset.png" alt="">
+        <img onclick="btnrst()" id="reset" src="reset.png" alt="">
+        <img onclick="vibr()" id="vibrate" src="reset.png" alt="">
         <h1 id="counting">0</h1>
-        
-    </div> 
+
+    </div>
 
     <script>
         let count = 0;
         let vibrate = 0;
+        
 
 
         function btn() {
@@ -88,6 +89,7 @@
             navigator.vibrate(75);
         }
             count++;
+           
 
             let a = document.getElementById('counting')
             a.innerHTML = count;
@@ -105,8 +107,10 @@
             
             if(vibrate != 1){
                 vibrate = 1;
+                
             }else{
                 vibrate = 0;
+                // console.log(vibrate)
             }
 
         }
@@ -114,4 +118,5 @@
 
     </script>
 </body>
+
 </html>
