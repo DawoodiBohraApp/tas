@@ -1,73 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasbeeh</title>
     <style>
-        body{
+        body {
             margin: 0px;
             padding: 0px;
+           
         }
+
         @font-face {
             font-family: 'digi';
             src: url("digital.TTF");
         }
-        #texture{
+
+        #texture {
             float: left;
             position: relative;
         }
-        #bodyc{
-         position: absolute;
-          left: 50px;
-          top: 170px;
-        }
-        #count{
+
+        #bodyc {
             position: absolute;
-          left: 164px;
-          top: 445px;
+            left: 50px;
+            top: 170px;
         }
-        #count:hover{
+
+        #count {
+            position: absolute;
+            left: 164px;
+            top: 445px;
+        }
+
+        #count:hover {
             width: 150px;
             left: 164px;
         }
-        #reset{
+
+        #reset {
             position: absolute;
-          left: 107px;
-          top: 396px;
+            left: 107px;
+            top: 396px;
         }
-        #reset:hover{
+
+        #reset:hover {
             top: 398px;
             left: 109px;
             width: 42px;
         }
-        #vibrate{
+
+        #vibrate {
             position: absolute;
-          left: 325px;
-          top: 396px;
+            left: 325px;
+            top: 396px;
         }
-        #vibrate:hover{
+
+        #vibrate:hover {
             top: 398px;
             left: 327px;
             width: 42px;
         }
-        h1{
-            position: absolute;
-          left: 225px;
-          top: 220px;
-          font-size: 70px;
-          font-family: 'digi';
-          text-align: right;
 
-        
-   
+        h1 {
+            position: absolute;
+            left: 225px;
+            top: 220px;
+            font-size: 70px;
+            font-family: 'digi';
+            text-align: right;
+
+
+
         }
     </style>
 </head>
+
 <body>
-    
-   <div class="tasheeh">
+
+    <div class="tasheeh">
 
         <img id="texture" src="tasbeeh.jpg" alt="texture">
         <img id="bodyc" src="body_10.png" alt="">
@@ -79,20 +92,37 @@
     </div>
 
     <script>
-        let count = 0;
+        let count = localStorage.getItem('digits');
         let vibrate = 0;
-        
 
 
+
+        window.onload = function () {
+            let a = document.getElementById('counting')
+
+            a.innerHTML = count;
+        }
         function btn() {
             if (vibrate == 1) {
-            navigator.vibrate(75);
-        }
+                navigator.vibrate(75);
+            }
             count++;
-           
 
+            let d = localStorage.getItem('digits');
             let a = document.getElementById('counting')
-            a.innerHTML = count;
+
+            a.innerHTML = d;
+
+            localStorage.setItem('digits', count)
+            if(d<99){
+                document.getElementById("counting").style.left = '220px';
+            }
+            else if(d=99){
+                document.getElementById("counting").style.left = '190px';
+            }
+            else if(d=1000){
+                document.getElementById("counting").style.left = '100px';
+            }
         }
         function btnrst() {
             let c = confirm("Are You Sure You Want to Reset?")
@@ -100,21 +130,24 @@
                 count = 0;
                 let a = document.getElementById('counting')
                 a.innerHTML = count;
+                localStorage.clear();
+
             }
         }
 
         function vibr() {
-            
-            if(vibrate != 1){
+
+            if (vibrate != 1) {
                 vibrate = 1;
-                
-            }else{
+                console.log(vibrate)
+            } else {
                 vibrate = 0;
                 // console.log(vibrate)
             }
 
         }
-        
+
+
 
     </script>
 </body>
