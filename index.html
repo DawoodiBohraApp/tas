@@ -10,7 +10,7 @@
         body {
             margin: 0px;
             padding: 0px;
-           
+
         }
 
         @font-face {
@@ -65,16 +65,20 @@
         }
 
         h1 {
-            position: absolute;
-            left: 225px;
-            top: 220px;
+            position: relative;
+            left: 180px;
+            bottom: 730px;
             font-size: 70px;
             font-family: 'digi';
             text-align: right;
-
+            width: 100px;
+            margin: 0px;
+            padding: 0px;
 
 
         }
+
+
     </style>
 </head>
 
@@ -107,32 +111,60 @@
                 navigator.vibrate(75);
             }
             count++;
+            localStorage.setItem('digits', count)
 
             let d = localStorage.getItem('digits');
             let a = document.getElementById('counting')
 
             a.innerHTML = d;
 
-            localStorage.setItem('digits', count)
-            if(d<99){
-                document.getElementById("counting").style.left = '220px';
-            }
-            else if(d=99){
-                document.getElementById("counting").style.left = '190px';
-            }
-            else if(d=1000){
-                document.getElementById("counting").style.left = '100px';
-            }
+
+            // if(d<99){
+            //     document.getElementById("counting").style.left = '220px';
+            // }
+            // else if(d=99){
+            //     document.getElementById("counting").style.left = '190px';
+            // }
+            // else if(d=1000){
+            //     document.getElementById("counting").style.left = '100px';
+            // }
         }
         function btnrst() {
-            let c = confirm("Are You Sure You Want to Reset?")
-            if (c == true) {
-                count = 0;
-                let a = document.getElementById('counting')
-                a.innerHTML = count;
-                localStorage.clear();
+            // let c = confirm("Are You Sure You Want to Reset?")
 
-            }
+            swal({
+                title: "Are you sure?",
+                text: "Are You Sure You Want to Reset?",
+                buttons: true,
+                
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        count = 0;
+                        let a = document.getElementById('counting')
+                        a.innerHTML = count;
+                        localStorage.clear();
+                        swal("Reset Successfully", {
+                            icon: "success",
+                            
+                            
+                        }
+
+                        );
+                    } else {
+                       
+                    }
+                });
+
+
+            // if (c == true) {
+            //     count = 0;
+            //     let a = document.getElementById('counting')
+            //     a.innerHTML = count;
+            //     localStorage.clear();
+
+            // }
         }
 
         function vibr() {
@@ -150,6 +182,7 @@
 
 
     </script>
+    <script src="swal.js"></script>
 </body>
 
 </html>
