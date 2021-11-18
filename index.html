@@ -10,7 +10,7 @@
         body {
             margin: 0px;
             padding: 0px;
-
+           
         }
 
         @font-face {
@@ -77,8 +77,6 @@
 
 
         }
-
-
     </style>
 </head>
 
@@ -110,7 +108,7 @@
             if (vibrate == 1) {
                 navigator.vibrate(75);
             }
-            count++;
+            count= count+10;
             localStorage.setItem('digits', count)
 
             let d = localStorage.getItem('digits');
@@ -118,7 +116,7 @@
 
             a.innerHTML = d;
 
-
+            
             // if(d<99){
             //     document.getElementById("counting").style.left = '220px';
             // }
@@ -130,41 +128,16 @@
             // }
         }
         function btnrst() {
-            // let c = confirm("Are You Sure You Want to Reset?")
+            let c = confirm("Are You Sure You Want to Reset?")
 
-            swal({
-                title: "Are you sure?",
-                text: "Are You Sure You Want to Reset?",
-                buttons: true,
-                
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        count = 0;
-                        let a = document.getElementById('counting')
-                        a.innerHTML = count;
-                        localStorage.clear();
-                        swal("Reset Successfully", {
-                            icon: "success",
-                            
-                            
-                        }
+            
+            if (c == true) {
+                count = 0;
+                let a = document.getElementById('counting')
+                a.innerHTML = count;
+                localStorage.clear();
 
-                        );
-                    } else {
-                       
-                    }
-                });
-
-
-            // if (c == true) {
-            //     count = 0;
-            //     let a = document.getElementById('counting')
-            //     a.innerHTML = count;
-            //     localStorage.clear();
-
-            // }
+            }
         }
 
         function vibr() {
@@ -182,7 +155,7 @@
 
 
     </script>
-    <script src="swal.js"></script>
+    
 </body>
 
 </html>
